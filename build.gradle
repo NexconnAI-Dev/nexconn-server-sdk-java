@@ -6,8 +6,19 @@ plugins {
     id 'com.vanniktech.maven.publish' version '0.33.0'
 }
 
+// Optional: armored secret key on disk (UTF-8). Avoids rare cases where a huge ORG_GRADLE_PROJECT_signingInMemoryKey
+// does not reach the Gradle daemon intact. Export once: gpg --export-secret-keys --armor KEY_ID > ~/.gradle/nexconn-signing.asc
+def _nexconnSigningKeyPath = System.getenv('SIGNING_IN_MEMORY_KEY_FILE')?.trim()
+if (_nexconnSigningKeyPath) {
+    def _nexconnSkf = new File(_nexconnSigningKeyPath)
+    if (_nexconnSkf.isFile()) {
+        System.setProperty('org.gradle.project.signingInMemoryKey', _nexconnSkf.getText('UTF-8').trim())
+    }
+}
+
+// Sign when publishing to Central, or when running a signing task directly (e.g. ./gradlew signMavenPublication --info).
 def shouldSignPublications = gradle.startParameter.taskNames.any { taskName ->
-    taskName.contains('MavenCentral')
+    taskName.contains('MavenCentral') || taskName.contains('signMavenPublication')
 }
 
 group = 'ai.nexconn'
