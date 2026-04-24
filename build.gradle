@@ -94,8 +94,8 @@ mavenPublishing {
             developer {
                 id = 'nexconn'
                 name = 'Nexconn'
-                email = 'sdk@nexconn.ai'
-                url = 'https://nexconn.ai'
+                email = 'customercare@nexconn.ai'
+                url = 'https://www.nexconn.ai'
             }
         }
 
