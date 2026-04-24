@@ -1,0 +1,122 @@
+plugins {
+    id 'idea'
+    id 'eclipse'
+    id 'java-library'
+    id 'com.diffplug.spotless' version '6.25.0'
+    id 'com.vanniktech.maven.publish' version '0.33.0'
+}
+
+def shouldSignPublications = gradle.startParameter.taskNames.any { taskName ->
+    taskName.contains('MavenCentral')
+}
+
+group = 'ai.nexconn'
+version = '0.1.0'
+description = 'Nexconn Server SDK for Java'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 11
+    options.compilerArgs += ['-Xlint:all']
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.tags = ['http.response.details:a:Http Response Details']
+}
+
+tasks.register('execute', JavaExec) {
+    mainClass.set(System.getProperty('mainClass'))
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+ext {
+    jakarta_annotation_version = '1.3.5'
+}
+
+dependencies {
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+    api 'com.squareup.okhttp3:okhttp:4.12.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    api 'com.google.code.gson:gson:2.10.1'
+    api 'io.gsonfire:gson-fire:1.9.0'
+    api 'jakarta.ws.rs:jakarta.ws.rs-api:2.1.6'
+    api 'org.openapitools:jackson-databind-nullable:0.2.6'
+    api 'org.apache.commons:commons-lang3:3.17.0'
+    api "jakarta.annotation:jakarta.annotation-api:$jakarta_annotation_version"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.3'
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+    if (shouldSignPublications) {
+        signAllPublications()
+    }
+    coordinates('ai.nexconn', 'nexconn-sdk-java', version.toString())
+
+    pom {
+        name = 'nexconn-sdk-java'
+        description = 'Nexconn Server SDK for Java'
+        url = 'https://github.com/NexconnAI-Dev/nexconn-server-sdk-java'
+
+        licenses {
+            license {
+                name = 'MIT'
+                url = 'https://opensource.org/licenses/MIT'
+                distribution = 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id = 'nexconn'
+                name = 'Nexconn'
+                email = 'sdk@nexconn.ai'
+                url = 'https://nexconn.ai'
+            }
+        }
+
+        scm {
+            url = 'https://github.com/NexconnAI-Dev/nexconn-server-sdk-java'
+            connection = 'scm:git:git://github.com/NexconnAI-Dev/nexconn-server-sdk-java.git'
+            developerConnection = 'scm:git:ssh://git@github.com/NexconnAI-Dev/nexconn-server-sdk-java.git'
+        }
+    }
+}
+
+spotless {
+    enforceCheck false
+
+    format 'misc', {
+        target '.gitignore'
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    java {
+        googleJavaFormat('1.17.0').aosp().reflowLongStrings()
+        removeUnusedImports()
+        importOrder()
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    dependsOn 'cleanTest'
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
