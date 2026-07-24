@@ -106,6 +106,7 @@ docs/CommunityUserSubchannelListResponse.md
 docs/CommunityUserSubchannelListResponseResult.md
 docs/DirectChannelMessageSendRequest.md
 docs/DirectChannelMessageUpdateRequest.md
+docs/DirectChannelStreamMessageSendRequest.md
 docs/FriendAddRequest.md
 docs/FriendCleanRequest.md
 docs/FriendDeleteRequest.md
@@ -174,6 +175,7 @@ docs/GroupChannelProfileListResponse.md
 docs/GroupChannelProfileListResponseResult.md
 docs/GroupChannelProfileUpdateRequest.md
 docs/GroupChannelQuitRequest.md
+docs/GroupChannelStreamMessageSendRequest.md
 docs/GroupChannelSummaryItem.md
 docs/GroupChannelTransferOwnerRequest.md
 docs/GroupChannelUserMuteListAddRequest.md
@@ -258,6 +260,9 @@ docs/ProfanityWordListResponseResult.md
 docs/ProfanityWordListedItem.md
 docs/SingleMessageIdResponse.md
 docs/SingleMessageIdResponseResult.md
+docs/StreamMessageContent.md
+docs/StreamMessageSendResponse.md
+docs/StreamMessageSendResponseResult.md
 docs/SystemChannelBroadcastAllRequest.md
 docs/SystemChannelBroadcastDeleteRequest.md
 docs/SystemChannelBroadcastOnlineRequest.md
@@ -460,6 +465,7 @@ src/main/java/ai/nexconn/model/CommunityUserSubchannelListResponse.java
 src/main/java/ai/nexconn/model/CommunityUserSubchannelListResponseResult.java
 src/main/java/ai/nexconn/model/DirectChannelMessageSendRequest.java
 src/main/java/ai/nexconn/model/DirectChannelMessageUpdateRequest.java
+src/main/java/ai/nexconn/model/DirectChannelStreamMessageSendRequest.java
 src/main/java/ai/nexconn/model/FriendAddRequest.java
 src/main/java/ai/nexconn/model/FriendCleanRequest.java
 src/main/java/ai/nexconn/model/FriendDeleteRequest.java
@@ -525,6 +531,7 @@ src/main/java/ai/nexconn/model/GroupChannelProfileListResponse.java
 src/main/java/ai/nexconn/model/GroupChannelProfileListResponseResult.java
 src/main/java/ai/nexconn/model/GroupChannelProfileUpdateRequest.java
 src/main/java/ai/nexconn/model/GroupChannelQuitRequest.java
+src/main/java/ai/nexconn/model/GroupChannelStreamMessageSendRequest.java
 src/main/java/ai/nexconn/model/GroupChannelSummaryItem.java
 src/main/java/ai/nexconn/model/GroupChannelTransferOwnerRequest.java
 src/main/java/ai/nexconn/model/GroupChannelUserMuteListAddRequest.java
@@ -602,6 +609,9 @@ src/main/java/ai/nexconn/model/ProfanityWordListResponseResult.java
 src/main/java/ai/nexconn/model/ProfanityWordListedItem.java
 src/main/java/ai/nexconn/model/SingleMessageIdResponse.java
 src/main/java/ai/nexconn/model/SingleMessageIdResponseResult.java
+src/main/java/ai/nexconn/model/StreamMessageContent.java
+src/main/java/ai/nexconn/model/StreamMessageSendResponse.java
+src/main/java/ai/nexconn/model/StreamMessageSendResponseResult.java
 src/main/java/ai/nexconn/model/SystemChannelBroadcastAllRequest.java
 src/main/java/ai/nexconn/model/SystemChannelBroadcastDeleteRequest.java
 src/main/java/ai/nexconn/model/SystemChannelBroadcastOnlineRequest.java
@@ -776,6 +786,7 @@ src/test/java/ai/nexconn/model/CommunityUserSubchannelListResponseResultTest.jav
 src/test/java/ai/nexconn/model/CommunityUserSubchannelListResponseTest.java
 src/test/java/ai/nexconn/model/DirectChannelMessageSendRequestTest.java
 src/test/java/ai/nexconn/model/DirectChannelMessageUpdateRequestTest.java
+src/test/java/ai/nexconn/model/DirectChannelStreamMessageSendRequestTest.java
 src/test/java/ai/nexconn/model/FriendAddRequestTest.java
 src/test/java/ai/nexconn/model/FriendCleanRequestTest.java
 src/test/java/ai/nexconn/model/FriendDeleteRequestTest.java
@@ -841,6 +852,7 @@ src/test/java/ai/nexconn/model/GroupChannelProfileListResponseResultTest.java
 src/test/java/ai/nexconn/model/GroupChannelProfileListResponseTest.java
 src/test/java/ai/nexconn/model/GroupChannelProfileUpdateRequestTest.java
 src/test/java/ai/nexconn/model/GroupChannelQuitRequestTest.java
+src/test/java/ai/nexconn/model/GroupChannelStreamMessageSendRequestTest.java
 src/test/java/ai/nexconn/model/GroupChannelSummaryItemTest.java
 src/test/java/ai/nexconn/model/GroupChannelTransferOwnerRequestTest.java
 src/test/java/ai/nexconn/model/GroupChannelUserMuteListAddRequestTest.java
@@ -918,6 +930,9 @@ src/test/java/ai/nexconn/model/ProfanityWordListResponseTest.java
 src/test/java/ai/nexconn/model/ProfanityWordListedItemTest.java
 src/test/java/ai/nexconn/model/SingleMessageIdResponseResultTest.java
 src/test/java/ai/nexconn/model/SingleMessageIdResponseTest.java
+src/test/java/ai/nexconn/model/StreamMessageContentTest.java
+src/test/java/ai/nexconn/model/StreamMessageSendResponseResultTest.java
+src/test/java/ai/nexconn/model/StreamMessageSendResponseTest.java
 src/test/java/ai/nexconn/model/SystemChannelBroadcastAllRequestTest.java
 src/test/java/ai/nexconn/model/SystemChannelBroadcastDeleteRequestTest.java
 src/test/java/ai/nexconn/model/SystemChannelBroadcastOnlineRequestTest.java
