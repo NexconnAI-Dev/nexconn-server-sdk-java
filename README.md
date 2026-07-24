@@ -1,7 +1,7 @@
 # nexconn-sdk-java
 
 Nexconn Server API
-- API version: 0.1.0
+- API version: 0.1.1
   - Generator version: 7.14.0
 
 OpenAPI specification aligned with the current Nexconn public documentation, PDF source documents, and generated SDK requirements.
@@ -30,7 +30,7 @@ To install the API client library to your local Maven repository, execute:
 <dependency>
   <groupId>ai.nexconn</groupId>
   <artifactId>nexconn-sdk-java</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -39,7 +39,7 @@ To install the API client library to your local Maven repository, execute:
 
 ```groovy
 dependencies {
-  implementation "ai.nexconn:nexconn-sdk-java:0.1.0"
+  implementation "ai.nexconn:nexconn-sdk-java:0.1.1"
 }
 ```
 
@@ -233,7 +233,9 @@ Class | Method | HTTP request | Description
 *MessageManagementApi* | [**listCommunityChannelMessageMetadata**](docs/MessageManagementApi.md#listCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/list | List community-channel message metadata
 *MessageManagementApi* | [**sendCommunityChannelMessage**](docs/MessageManagementApi.md#sendCommunityChannelMessage) | **POST** /v4/community-channel/message/send | Send a community channel message
 *MessageManagementApi* | [**sendDirectChannelMessage**](docs/MessageManagementApi.md#sendDirectChannelMessage) | **POST** /v4/direct-channel/message/send | Send a direct message
+*MessageManagementApi* | [**sendDirectChannelStreamMessage**](docs/MessageManagementApi.md#sendDirectChannelStreamMessage) | **POST** /v4/direct-channel/message/stream/send | Send a direct channel stream message
 *MessageManagementApi* | [**sendGroupChannelMessage**](docs/MessageManagementApi.md#sendGroupChannelMessage) | **POST** /v4/group-channel/message/send | Send a group message
+*MessageManagementApi* | [**sendGroupChannelStreamMessage**](docs/MessageManagementApi.md#sendGroupChannelStreamMessage) | **POST** /v4/group-channel/message/stream/send | Send a group channel stream message
 *MessageManagementApi* | [**sendOpenChannelMessage**](docs/MessageManagementApi.md#sendOpenChannelMessage) | **POST** /v4/open-channel/message/send | Send an open channel message
 *MessageManagementApi* | [**setChannelTypeMessageMetadata**](docs/MessageManagementApi.md#setChannelTypeMessageMetadata) | **POST** /v4/channel-type/message/metadata/set | Set message metadata
 *MessageManagementApi* | [**setCommunityChannelMessageMetadata**](docs/MessageManagementApi.md#setCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/set | Set community-channel message metadata
@@ -410,6 +412,7 @@ Class | Method | HTTP request | Description
 - [CommunityUserSubchannelListResponseResult](docs/CommunityUserSubchannelListResponseResult.md)
 - [DirectChannelMessageSendRequest](docs/DirectChannelMessageSendRequest.md)
 - [DirectChannelMessageUpdateRequest](docs/DirectChannelMessageUpdateRequest.md)
+- [DirectChannelStreamMessageSendRequest](docs/DirectChannelStreamMessageSendRequest.md)
 - [FriendAddRequest](docs/FriendAddRequest.md)
 - [FriendCleanRequest](docs/FriendCleanRequest.md)
 - [FriendDeleteRequest](docs/FriendDeleteRequest.md)
@@ -475,6 +478,7 @@ Class | Method | HTTP request | Description
 - [GroupChannelProfileListResponseResult](docs/GroupChannelProfileListResponseResult.md)
 - [GroupChannelProfileUpdateRequest](docs/GroupChannelProfileUpdateRequest.md)
 - [GroupChannelQuitRequest](docs/GroupChannelQuitRequest.md)
+- [GroupChannelStreamMessageSendRequest](docs/GroupChannelStreamMessageSendRequest.md)
 - [GroupChannelSummaryItem](docs/GroupChannelSummaryItem.md)
 - [GroupChannelTransferOwnerRequest](docs/GroupChannelTransferOwnerRequest.md)
 - [GroupChannelUserMuteListAddRequest](docs/GroupChannelUserMuteListAddRequest.md)
@@ -552,6 +556,9 @@ Class | Method | HTTP request | Description
 - [ProfanityWordListedItem](docs/ProfanityWordListedItem.md)
 - [SingleMessageIdResponse](docs/SingleMessageIdResponse.md)
 - [SingleMessageIdResponseResult](docs/SingleMessageIdResponseResult.md)
+- [StreamMessageContent](docs/StreamMessageContent.md)
+- [StreamMessageSendResponse](docs/StreamMessageSendResponse.md)
+- [StreamMessageSendResponseResult](docs/StreamMessageSendResponseResult.md)
 - [SystemChannelBroadcastAllRequest](docs/SystemChannelBroadcastAllRequest.md)
 - [SystemChannelBroadcastDeleteRequest](docs/SystemChannelBroadcastDeleteRequest.md)
 - [SystemChannelBroadcastOnlineRequest](docs/SystemChannelBroadcastOnlineRequest.md)
@@ -629,8 +636,9 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 ## Package Info
 
 - Repository: `GIT_REPO_ID`
-- Package version: `0.1.0`
+- Package version: `0.1.1`
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+

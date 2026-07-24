@@ -13,7 +13,9 @@ All requests use the primary/backup domains configured by the caller.
 | [**listCommunityChannelMessageMetadata**](MessageManagementApi.md#listCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/list | List community-channel message metadata |
 | [**sendCommunityChannelMessage**](MessageManagementApi.md#sendCommunityChannelMessage) | **POST** /v4/community-channel/message/send | Send a community channel message |
 | [**sendDirectChannelMessage**](MessageManagementApi.md#sendDirectChannelMessage) | **POST** /v4/direct-channel/message/send | Send a direct message |
+| [**sendDirectChannelStreamMessage**](MessageManagementApi.md#sendDirectChannelStreamMessage) | **POST** /v4/direct-channel/message/stream/send | Send a direct channel stream message |
 | [**sendGroupChannelMessage**](MessageManagementApi.md#sendGroupChannelMessage) | **POST** /v4/group-channel/message/send | Send a group message |
+| [**sendGroupChannelStreamMessage**](MessageManagementApi.md#sendGroupChannelStreamMessage) | **POST** /v4/group-channel/message/stream/send | Send a group channel stream message |
 | [**sendOpenChannelMessage**](MessageManagementApi.md#sendOpenChannelMessage) | **POST** /v4/open-channel/message/send | Send an open channel message |
 | [**setChannelTypeMessageMetadata**](MessageManagementApi.md#setChannelTypeMessageMetadata) | **POST** /v4/channel-type/message/metadata/set | Set message metadata |
 | [**setCommunityChannelMessageMetadata**](MessageManagementApi.md#setCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/set | Set community-channel message metadata |
@@ -639,6 +641,75 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
+<a id="sendDirectChannelStreamMessage"></a>
+# **sendDirectChannelStreamMessage**
+> StreamMessageSendResponse sendDirectChannelStreamMessage(directChannelStreamMessageSendRequest)
+
+Send a direct channel stream message
+
+Rate limit: 100/sec.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    DirectChannelStreamMessageSendRequest directChannelStreamMessageSendRequest = new DirectChannelStreamMessageSendRequest(); // DirectChannelStreamMessageSendRequest | 
+    try {
+      StreamMessageSendResponse result = apiInstance.sendDirectChannelStreamMessage(directChannelStreamMessageSendRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#sendDirectChannelStreamMessage");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **directChannelStreamMessageSendRequest** | [**DirectChannelStreamMessageSendRequest**](DirectChannelStreamMessageSendRequest.md)|  | |
+
+### Return type
+
+[**StreamMessageSendResponse**](StreamMessageSendResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
 <a id="sendGroupChannelMessage"></a>
 # **sendGroupChannelMessage**
 > ChannelMessageSendResponse sendGroupChannelMessage(groupChannelMessageSendRequest)
@@ -693,6 +764,75 @@ public class Example {
 ### Return type
 
 [**ChannelMessageSendResponse**](ChannelMessageSendResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a id="sendGroupChannelStreamMessage"></a>
+# **sendGroupChannelStreamMessage**
+> StreamMessageSendResponse sendGroupChannelStreamMessage(groupChannelStreamMessageSendRequest)
+
+Send a group channel stream message
+
+Rate limit: 100/sec.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    GroupChannelStreamMessageSendRequest groupChannelStreamMessageSendRequest = new GroupChannelStreamMessageSendRequest(); // GroupChannelStreamMessageSendRequest | 
+    try {
+      StreamMessageSendResponse result = apiInstance.sendGroupChannelStreamMessage(groupChannelStreamMessageSendRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#sendGroupChannelStreamMessage");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **groupChannelStreamMessageSendRequest** | [**GroupChannelStreamMessageSendRequest**](GroupChannelStreamMessageSendRequest.md)|  | |
+
+### Return type
+
+[**StreamMessageSendResponse**](StreamMessageSendResponse.md)
 
 ### Authorization
 
