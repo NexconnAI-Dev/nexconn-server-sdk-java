@@ -53,6 +53,14 @@ public class CommunityChannelHistoryMessageListRequestTest {
     }
 
     /**
+     * Test the property 'userId'
+     */
+    @Test
+    public void userIdTest() {
+        // TODO: test userId
+    }
+
+    /**
      * Test the property 'startAt'
      */
     @Test
@@ -69,19 +77,19 @@ public class CommunityChannelHistoryMessageListRequestTest {
     }
 
     /**
-     * Test the property 'fromUserId'
-     */
-    @Test
-    public void fromUserIdTest() {
-        // TODO: test fromUserId
-    }
-
-    /**
      * Test the property 'pageSize'
      */
     @Test
     public void pageSizeTest() {
         // TODO: test pageSize
+    }
+
+    /**
+     * Test the property 'includeStart'
+     */
+    @Test
+    public void includeStartTest() {
+        // TODO: test includeStart
     }
 
 }

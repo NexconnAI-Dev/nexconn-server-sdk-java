@@ -32,21 +32,28 @@ import ai.nexconn.model.ChannelTypeMessageMetadataDeleteRequest;
 import ai.nexconn.model.ChannelTypeMessageMetadataListRequest;
 import ai.nexconn.model.ChannelTypeMessageMetadataListResponse;
 import ai.nexconn.model.CodeOnlyResponse;
+import ai.nexconn.model.CommunityChannelHistoryMessageListRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataDeleteRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataListRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataListResponse;
 import ai.nexconn.model.CommunityChannelMessageMetadataSetRequest;
 import ai.nexconn.model.CommunityChannelMessageSendRequest;
 import ai.nexconn.model.CommunityChannelMessageUpdateRequest;
+import ai.nexconn.model.DirectChannelHistoryMessageListRequest;
 import ai.nexconn.model.DirectChannelMessageSendRequest;
 import ai.nexconn.model.DirectChannelMessageUpdateRequest;
 import ai.nexconn.model.DirectChannelStreamMessageSendRequest;
+import ai.nexconn.model.DirectGroupHistoryMessageResponse;
+import ai.nexconn.model.GroupChannelHistoryMessageListRequest;
 import ai.nexconn.model.GroupChannelMessageSendRequest;
 import ai.nexconn.model.GroupChannelMessageUpdateRequest;
 import ai.nexconn.model.GroupChannelStreamMessageSendRequest;
 import ai.nexconn.model.MessageDeleteRequest;
+import ai.nexconn.model.MessageHistoryResponse;
 import ai.nexconn.model.MessageMetadataSetRequest;
 import ai.nexconn.model.OpenChannelBroadcastRequest;
+import ai.nexconn.model.OpenChannelHistoryMessageListRequest;
+import ai.nexconn.model.OpenChannelHistoryMessageResponse;
 import ai.nexconn.model.OpenChannelMessageSendRequest;
 import ai.nexconn.model.StreamMessageSendResponse;
 import ai.nexconn.model.UserMessageSendResponse;
@@ -910,6 +917,135 @@ public class MessageManagementApi {
         return localVarCall;
     }
         /**
+     * Build call for listCommunityChannelHistoryMessages
+     * @param communityChannelHistoryMessageListRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listCommunityChannelHistoryMessagesCall(@javax.annotation.Nonnull CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = communityChannelHistoryMessageListRequest;
+                // create path and map variables
+        String localVarPath = "/v4/community-channel/history-message/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "NexconnSignature" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+            @SuppressWarnings("rawtypes")
+    private okhttp3.Call listCommunityChannelHistoryMessagesValidateBeforeCall(@javax.annotation.Nonnull CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'communityChannelHistoryMessageListRequest' is set
+        if (communityChannelHistoryMessageListRequest == null) {
+            throw new ApiException("Missing the required parameter 'communityChannelHistoryMessageListRequest' when calling listCommunityChannelHistoryMessages(Async)");
+        }
+
+        
+        return listCommunityChannelHistoryMessagesCall(communityChannelHistoryMessageListRequest, _callback);
+
+    }
+
+    /**
+     * List community-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param communityChannelHistoryMessageListRequest  (required)
+     * @return MessageHistoryResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public MessageHistoryResponse listCommunityChannelHistoryMessages(@javax.annotation.Nonnull CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest) throws ApiException {
+        ApiResponse<MessageHistoryResponse> localVarResp = listCommunityChannelHistoryMessagesWithHttpInfo(communityChannelHistoryMessageListRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List community-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param communityChannelHistoryMessageListRequest  (required)
+     * @return ApiResponse&lt;MessageHistoryResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<MessageHistoryResponse> listCommunityChannelHistoryMessagesWithHttpInfo(@javax.annotation.Nonnull CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest) throws ApiException {
+        okhttp3.Call localVarCall = listCommunityChannelHistoryMessagesValidateBeforeCall(communityChannelHistoryMessageListRequest, null);
+        Type localVarReturnType = new TypeToken<MessageHistoryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+    
+
+    /**
+     * List community-channel history messages (asynchronously)
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param communityChannelHistoryMessageListRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listCommunityChannelHistoryMessagesAsync(@javax.annotation.Nonnull CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest, final ApiCallback<MessageHistoryResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listCommunityChannelHistoryMessagesValidateBeforeCall(communityChannelHistoryMessageListRequest, _callback);
+        Type localVarReturnType = new TypeToken<MessageHistoryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+        /**
      * Build call for listCommunityChannelMessageMetadata
      * @param communityChannelMessageMetadataListRequest  (required)
      * @param _callback Callback for upload/download progress
@@ -1035,6 +1171,393 @@ public class MessageManagementApi {
 
         okhttp3.Call localVarCall = listCommunityChannelMessageMetadataValidateBeforeCall(communityChannelMessageMetadataListRequest, _callback);
         Type localVarReturnType = new TypeToken<CommunityChannelMessageMetadataListResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+        /**
+     * Build call for listDirectChannelHistoryMessages
+     * @param directChannelHistoryMessageListRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listDirectChannelHistoryMessagesCall(@javax.annotation.Nonnull DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = directChannelHistoryMessageListRequest;
+                // create path and map variables
+        String localVarPath = "/v4/direct-channel/history-message/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "NexconnSignature" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+            @SuppressWarnings("rawtypes")
+    private okhttp3.Call listDirectChannelHistoryMessagesValidateBeforeCall(@javax.annotation.Nonnull DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'directChannelHistoryMessageListRequest' is set
+        if (directChannelHistoryMessageListRequest == null) {
+            throw new ApiException("Missing the required parameter 'directChannelHistoryMessageListRequest' when calling listDirectChannelHistoryMessages(Async)");
+        }
+
+        
+        return listDirectChannelHistoryMessagesCall(directChannelHistoryMessageListRequest, _callback);
+
+    }
+
+    /**
+     * List direct-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param directChannelHistoryMessageListRequest  (required)
+     * @return DirectGroupHistoryMessageResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public DirectGroupHistoryMessageResponse listDirectChannelHistoryMessages(@javax.annotation.Nonnull DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest) throws ApiException {
+        ApiResponse<DirectGroupHistoryMessageResponse> localVarResp = listDirectChannelHistoryMessagesWithHttpInfo(directChannelHistoryMessageListRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List direct-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param directChannelHistoryMessageListRequest  (required)
+     * @return ApiResponse&lt;DirectGroupHistoryMessageResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DirectGroupHistoryMessageResponse> listDirectChannelHistoryMessagesWithHttpInfo(@javax.annotation.Nonnull DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest) throws ApiException {
+        okhttp3.Call localVarCall = listDirectChannelHistoryMessagesValidateBeforeCall(directChannelHistoryMessageListRequest, null);
+        Type localVarReturnType = new TypeToken<DirectGroupHistoryMessageResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+    
+
+    /**
+     * List direct-channel history messages (asynchronously)
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param directChannelHistoryMessageListRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listDirectChannelHistoryMessagesAsync(@javax.annotation.Nonnull DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest, final ApiCallback<DirectGroupHistoryMessageResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listDirectChannelHistoryMessagesValidateBeforeCall(directChannelHistoryMessageListRequest, _callback);
+        Type localVarReturnType = new TypeToken<DirectGroupHistoryMessageResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+        /**
+     * Build call for listGroupChannelHistoryMessages
+     * @param groupChannelHistoryMessageListRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listGroupChannelHistoryMessagesCall(@javax.annotation.Nonnull GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = groupChannelHistoryMessageListRequest;
+                // create path and map variables
+        String localVarPath = "/v4/group-channel/history-message/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "NexconnSignature" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+            @SuppressWarnings("rawtypes")
+    private okhttp3.Call listGroupChannelHistoryMessagesValidateBeforeCall(@javax.annotation.Nonnull GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'groupChannelHistoryMessageListRequest' is set
+        if (groupChannelHistoryMessageListRequest == null) {
+            throw new ApiException("Missing the required parameter 'groupChannelHistoryMessageListRequest' when calling listGroupChannelHistoryMessages(Async)");
+        }
+
+        
+        return listGroupChannelHistoryMessagesCall(groupChannelHistoryMessageListRequest, _callback);
+
+    }
+
+    /**
+     * List group-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param groupChannelHistoryMessageListRequest  (required)
+     * @return DirectGroupHistoryMessageResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public DirectGroupHistoryMessageResponse listGroupChannelHistoryMessages(@javax.annotation.Nonnull GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest) throws ApiException {
+        ApiResponse<DirectGroupHistoryMessageResponse> localVarResp = listGroupChannelHistoryMessagesWithHttpInfo(groupChannelHistoryMessageListRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List group-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param groupChannelHistoryMessageListRequest  (required)
+     * @return ApiResponse&lt;DirectGroupHistoryMessageResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<DirectGroupHistoryMessageResponse> listGroupChannelHistoryMessagesWithHttpInfo(@javax.annotation.Nonnull GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest) throws ApiException {
+        okhttp3.Call localVarCall = listGroupChannelHistoryMessagesValidateBeforeCall(groupChannelHistoryMessageListRequest, null);
+        Type localVarReturnType = new TypeToken<DirectGroupHistoryMessageResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+    
+
+    /**
+     * List group-channel history messages (asynchronously)
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param groupChannelHistoryMessageListRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listGroupChannelHistoryMessagesAsync(@javax.annotation.Nonnull GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest, final ApiCallback<DirectGroupHistoryMessageResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listGroupChannelHistoryMessagesValidateBeforeCall(groupChannelHistoryMessageListRequest, _callback);
+        Type localVarReturnType = new TypeToken<DirectGroupHistoryMessageResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+        /**
+     * Build call for listOpenChannelHistoryMessages
+     * @param openChannelHistoryMessageListRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listOpenChannelHistoryMessagesCall(@javax.annotation.Nonnull OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = openChannelHistoryMessageListRequest;
+                // create path and map variables
+        String localVarPath = "/v4/open-channel/history-message/list";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "NexconnSignature" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+            @SuppressWarnings("rawtypes")
+    private okhttp3.Call listOpenChannelHistoryMessagesValidateBeforeCall(@javax.annotation.Nonnull OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'openChannelHistoryMessageListRequest' is set
+        if (openChannelHistoryMessageListRequest == null) {
+            throw new ApiException("Missing the required parameter 'openChannelHistoryMessageListRequest' when calling listOpenChannelHistoryMessages(Async)");
+        }
+
+        
+        return listOpenChannelHistoryMessagesCall(openChannelHistoryMessageListRequest, _callback);
+
+    }
+
+    /**
+     * List open-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param openChannelHistoryMessageListRequest  (required)
+     * @return OpenChannelHistoryMessageResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public OpenChannelHistoryMessageResponse listOpenChannelHistoryMessages(@javax.annotation.Nonnull OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest) throws ApiException {
+        ApiResponse<OpenChannelHistoryMessageResponse> localVarResp = listOpenChannelHistoryMessagesWithHttpInfo(openChannelHistoryMessageListRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List open-channel history messages
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param openChannelHistoryMessageListRequest  (required)
+     * @return ApiResponse&lt;OpenChannelHistoryMessageResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OpenChannelHistoryMessageResponse> listOpenChannelHistoryMessagesWithHttpInfo(@javax.annotation.Nonnull OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest) throws ApiException {
+        okhttp3.Call localVarCall = listOpenChannelHistoryMessagesValidateBeforeCall(openChannelHistoryMessageListRequest, null);
+        Type localVarReturnType = new TypeToken<OpenChannelHistoryMessageResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+    
+
+    /**
+     * List open-channel history messages (asynchronously)
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     * @param openChannelHistoryMessageListRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listOpenChannelHistoryMessagesAsync(@javax.annotation.Nonnull OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest, final ApiCallback<OpenChannelHistoryMessageResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listOpenChannelHistoryMessagesValidateBeforeCall(openChannelHistoryMessageListRequest, _callback);
+        Type localVarReturnType = new TypeToken<OpenChannelHistoryMessageResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

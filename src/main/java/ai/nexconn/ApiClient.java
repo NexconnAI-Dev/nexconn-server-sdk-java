@@ -146,7 +146,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("nexconn-sdk-java/0.1.1");
+        setUserAgent("nexconn-sdk-java/0.1.2");
 
         authentications = new HashMap<String, Authentication>();
         errorCounter = new AtomicInteger(0);

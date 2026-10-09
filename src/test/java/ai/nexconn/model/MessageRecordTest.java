@@ -88,14 +88,6 @@ public class MessageRecordTest {
     }
 
     /**
-     * Test the property 'channelType'
-     */
-    @Test
-    public void channelTypeTest() {
-        // TODO: test channelType
-    }
-
-    /**
      * Test the property 'content'
      */
     @Test
@@ -117,6 +109,14 @@ public class MessageRecordTest {
     @Test
     public void metadataTest() {
         // TODO: test metadata
+    }
+
+    /**
+     * Test the property 'quote'
+     */
+    @Test
+    public void quoteTest() {
+        // TODO: test quote
     }
 
 }
