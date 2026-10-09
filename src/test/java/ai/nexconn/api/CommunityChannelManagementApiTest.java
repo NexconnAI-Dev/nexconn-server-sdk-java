@@ -16,7 +16,6 @@ import ai.nexconn.ApiException;
 import ai.nexconn.model.CodeOnlyResponse;
 import ai.nexconn.model.CommunityChannelCreateRequest;
 import ai.nexconn.model.CommunityChannelDismissRequest;
-import ai.nexconn.model.CommunityChannelHistoryMessageListRequest;
 import ai.nexconn.model.CommunityChannelMemberExistResponse;
 import ai.nexconn.model.CommunityChannelMemberRequest;
 import ai.nexconn.model.CommunityChannelSubchannelUserGroupListRequest;
@@ -42,7 +41,6 @@ import ai.nexconn.model.CommunitySubchannelListResponse;
 import ai.nexconn.model.CommunitySubchannelTypeUpdateRequest;
 import ai.nexconn.model.CommunityUserSubchannelListRequest;
 import ai.nexconn.model.CommunityUserSubchannelListResponse;
-import ai.nexconn.model.MessageHistoryResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -176,18 +174,6 @@ public class CommunityChannelManagementApiTest {
     public void joinCommunityChannelTest() throws ApiException {
         CommunityChannelMemberRequest communityChannelMemberRequest = null;
         CodeOnlyResponse response = api.joinCommunityChannel(communityChannelMemberRequest);
-        // TODO: test validations
-    }
-
-    /**
-     * List community-channel history messages
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void listCommunityChannelHistoryMessagesTest() throws ApiException {
-        CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest = null;
-        MessageHistoryResponse response = api.listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest);
         // TODO: test validations
     }
 

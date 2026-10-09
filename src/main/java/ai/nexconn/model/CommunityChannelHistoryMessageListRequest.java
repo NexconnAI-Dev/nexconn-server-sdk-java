@@ -56,8 +56,13 @@ public class CommunityChannelHistoryMessageListRequest {
 
   public static final String SERIALIZED_NAME_SUBCHANNEL_ID = "subchannelId";
   @SerializedName(SERIALIZED_NAME_SUBCHANNEL_ID)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String subchannelId;
+
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  @javax.annotation.Nonnull
+  private String userId;
 
   public static final String SERIALIZED_NAME_START_AT = "startAt";
   @SerializedName(SERIALIZED_NAME_START_AT)
@@ -69,15 +74,15 @@ public class CommunityChannelHistoryMessageListRequest {
   @javax.annotation.Nonnull
   private Long endAt;
 
-  public static final String SERIALIZED_NAME_FROM_USER_ID = "fromUserId";
-  @SerializedName(SERIALIZED_NAME_FROM_USER_ID)
-  @javax.annotation.Nullable
-  private String fromUserId;
-
   public static final String SERIALIZED_NAME_PAGE_SIZE = "pageSize";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
   @javax.annotation.Nullable
-  private Integer pageSize = 20;
+  private Integer pageSize = 10;
+
+  public static final String SERIALIZED_NAME_INCLUDE_START = "includeStart";
+  @SerializedName(SERIALIZED_NAME_INCLUDE_START)
+  @javax.annotation.Nonnull
+  private Boolean includeStart;
 
   public CommunityChannelHistoryMessageListRequest() {
   }
@@ -88,7 +93,7 @@ public class CommunityChannelHistoryMessageListRequest {
   }
 
   /**
-   * Get channelId
+   * Community channel ID.
    * @return channelId
    */
   @javax.annotation.Nonnull
@@ -101,22 +106,41 @@ public class CommunityChannelHistoryMessageListRequest {
   }
 
 
-  public CommunityChannelHistoryMessageListRequest subchannelId(@javax.annotation.Nonnull String subchannelId) {
+  public CommunityChannelHistoryMessageListRequest subchannelId(@javax.annotation.Nullable String subchannelId) {
     this.subchannelId = subchannelId;
     return this;
   }
 
   /**
-   * Get subchannelId
+   * Optional community subchannel ID. When omitted, messages from the whole community channel are queried.
    * @return subchannelId
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getSubchannelId() {
     return subchannelId;
   }
 
-  public void setSubchannelId(@javax.annotation.Nonnull String subchannelId) {
+  public void setSubchannelId(@javax.annotation.Nullable String subchannelId) {
     this.subchannelId = subchannelId;
+  }
+
+
+  public CommunityChannelHistoryMessageListRequest userId(@javax.annotation.Nonnull String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * User ID of the community-channel participant.
+   * @return userId
+   */
+  @javax.annotation.Nonnull
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(@javax.annotation.Nonnull String userId) {
+    this.userId = userId;
   }
 
 
@@ -126,7 +150,7 @@ public class CommunityChannelHistoryMessageListRequest {
   }
 
   /**
-   * Get startAt
+   * Query start timestamp in Unix milliseconds. Must be greater than or equal to &#x60;endAt&#x60;; the range cannot exceed 14 days.
    * @return startAt
    */
   @javax.annotation.Nonnull
@@ -145,7 +169,7 @@ public class CommunityChannelHistoryMessageListRequest {
   }
 
   /**
-   * Get endAt
+   * Query end timestamp in Unix milliseconds. Messages are returned in descending timestamp order.
    * @return endAt
    */
   @javax.annotation.Nonnull
@@ -158,32 +182,15 @@ public class CommunityChannelHistoryMessageListRequest {
   }
 
 
-  public CommunityChannelHistoryMessageListRequest fromUserId(@javax.annotation.Nullable String fromUserId) {
-    this.fromUserId = fromUserId;
-    return this;
-  }
-
-  /**
-   * Get fromUserId
-   * @return fromUserId
-   */
-  @javax.annotation.Nullable
-  public String getFromUserId() {
-    return fromUserId;
-  }
-
-  public void setFromUserId(@javax.annotation.Nullable String fromUserId) {
-    this.fromUserId = fromUserId;
-  }
-
-
   public CommunityChannelHistoryMessageListRequest pageSize(@javax.annotation.Nullable Integer pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
   /**
-   * Get pageSize
+   * Number of messages to return. Must be between 1 and 100.
+   * minimum: 1
+   * maximum: 100
    * @return pageSize
    */
   @javax.annotation.Nullable
@@ -195,6 +202,69 @@ public class CommunityChannelHistoryMessageListRequest {
     this.pageSize = pageSize;
   }
 
+
+  public CommunityChannelHistoryMessageListRequest includeStart(@javax.annotation.Nonnull Boolean includeStart) {
+    this.includeStart = includeStart;
+    return this;
+  }
+
+  /**
+   * Whether to include the message at &#x60;startAt&#x60; when it matches the query boundary.
+   * @return includeStart
+   */
+  @javax.annotation.Nonnull
+  public Boolean getIncludeStart() {
+    return includeStart;
+  }
+
+  public void setIncludeStart(@javax.annotation.Nonnull Boolean includeStart) {
+    this.includeStart = includeStart;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CommunityChannelHistoryMessageListRequest instance itself
+   */
+  public CommunityChannelHistoryMessageListRequest putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -208,15 +278,17 @@ public class CommunityChannelHistoryMessageListRequest {
     CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest = (CommunityChannelHistoryMessageListRequest) o;
     return Objects.equals(this.channelId, communityChannelHistoryMessageListRequest.channelId) &&
         Objects.equals(this.subchannelId, communityChannelHistoryMessageListRequest.subchannelId) &&
+        Objects.equals(this.userId, communityChannelHistoryMessageListRequest.userId) &&
         Objects.equals(this.startAt, communityChannelHistoryMessageListRequest.startAt) &&
         Objects.equals(this.endAt, communityChannelHistoryMessageListRequest.endAt) &&
-        Objects.equals(this.fromUserId, communityChannelHistoryMessageListRequest.fromUserId) &&
-        Objects.equals(this.pageSize, communityChannelHistoryMessageListRequest.pageSize);
+        Objects.equals(this.pageSize, communityChannelHistoryMessageListRequest.pageSize) &&
+        Objects.equals(this.includeStart, communityChannelHistoryMessageListRequest.includeStart)&&
+        Objects.equals(this.additionalProperties, communityChannelHistoryMessageListRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channelId, subchannelId, startAt, endAt, fromUserId, pageSize);
+    return Objects.hash(channelId, subchannelId, userId, startAt, endAt, pageSize, includeStart, additionalProperties);
   }
 
   @Override
@@ -225,10 +297,12 @@ public class CommunityChannelHistoryMessageListRequest {
     sb.append("class CommunityChannelHistoryMessageListRequest {\n");
     sb.append("    channelId: ").append(toIndentedString(channelId)).append("\n");
     sb.append("    subchannelId: ").append(toIndentedString(subchannelId)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
     sb.append("    endAt: ").append(toIndentedString(endAt)).append("\n");
-    sb.append("    fromUserId: ").append(toIndentedString(fromUserId)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
+    sb.append("    includeStart: ").append(toIndentedString(includeStart)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -250,10 +324,10 @@ public class CommunityChannelHistoryMessageListRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("channelId", "subchannelId", "startAt", "endAt", "fromUserId", "pageSize"));
+    openapiFields = new HashSet<String>(Arrays.asList("channelId", "subchannelId", "userId", "startAt", "endAt", "pageSize", "includeStart"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("channelId", "subchannelId", "startAt", "endAt"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("channelId", "userId", "startAt", "endAt", "includeStart"));
   }
 
   /**
@@ -269,14 +343,6 @@ public class CommunityChannelHistoryMessageListRequest {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CommunityChannelHistoryMessageListRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CommunityChannelHistoryMessageListRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : CommunityChannelHistoryMessageListRequest.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -287,11 +353,11 @@ public class CommunityChannelHistoryMessageListRequest {
       if (!jsonObj.get("channelId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `channelId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("channelId").toString()));
       }
-      if (!jsonObj.get("subchannelId").isJsonPrimitive()) {
+      if ((jsonObj.get("subchannelId") != null && !jsonObj.get("subchannelId").isJsonNull()) && !jsonObj.get("subchannelId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `subchannelId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subchannelId").toString()));
       }
-      if ((jsonObj.get("fromUserId") != null && !jsonObj.get("fromUserId").isJsonNull()) && !jsonObj.get("fromUserId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fromUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fromUserId").toString()));
+      if (!jsonObj.get("userId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `userId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userId").toString()));
       }
   }
 
@@ -310,6 +376,28 @@ public class CommunityChannelHistoryMessageListRequest {
            @Override
            public void write(JsonWriter out, CommunityChannelHistoryMessageListRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -317,7 +405,28 @@ public class CommunityChannelHistoryMessageListRequest {
            public CommunityChannelHistoryMessageListRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CommunityChannelHistoryMessageListRequest instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();

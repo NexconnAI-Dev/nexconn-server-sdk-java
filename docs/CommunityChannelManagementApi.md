@@ -14,7 +14,6 @@ All requests use the primary/backup domains configured by the caller.
 | [**deleteCommunitySubchannel**](CommunityChannelManagementApi.md#deleteCommunitySubchannel) | **POST** /v4/community-channel/subchannel/delete | Delete community subchannel |
 | [**dismissCommunityChannel**](CommunityChannelManagementApi.md#dismissCommunityChannel) | **POST** /v4/community-channel/dismiss | Dismiss community channel |
 | [**joinCommunityChannel**](CommunityChannelManagementApi.md#joinCommunityChannel) | **POST** /v4/community-channel/join | Join community channel |
-| [**listCommunityChannelHistoryMessages**](CommunityChannelManagementApi.md#listCommunityChannelHistoryMessages) | **POST** /v4/community-channel/history-message/list | List community-channel history messages |
 | [**listCommunityChannelSubchannelUserGroups**](CommunityChannelManagementApi.md#listCommunityChannelSubchannelUserGroups) | **POST** /v4/community-channel/channel/user-group/list | List community channel subchannel user groups |
 | [**listCommunityChannelUserGroupSubchannels**](CommunityChannelManagementApi.md#listCommunityChannelUserGroupSubchannels) | **POST** /v4/community-channel/user-group/subchannel/list | List community channel user group subchannels |
 | [**listCommunityChannelUserGroups**](CommunityChannelManagementApi.md#listCommunityChannelUserGroups) | **POST** /v4/community-channel/user-group/list | List community channel user groups |
@@ -686,73 +685,6 @@ public class Example {
 ### Return type
 
 [**CodeOnlyResponse**](CodeOnlyResponse.md)
-
-### Authorization
-
-[NexconnSignature](../README.md#NexconnSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-<a id="listCommunityChannelHistoryMessages"></a>
-# **listCommunityChannelHistoryMessages**
-> MessageHistoryResponse listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest)
-
-List community-channel history messages
-
-### Example
-```java
-// Import classes:
-import ai.nexconn.ApiClient;
-import ai.nexconn.ApiException;
-import ai.nexconn.Configuration;
-import ai.nexconn.model.*;
-import ai.nexconn.api.CommunityChannelManagementApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.sg-light-api.com");
-    
-    // Configure API key authorization: NexconnSignature
-    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
-    NexconnSignature.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //NexconnSignature.setApiKeyPrefix("Token");
-
-    CommunityChannelManagementApi apiInstance = new CommunityChannelManagementApi(defaultClient);
-    
-    CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest = new CommunityChannelHistoryMessageListRequest(); // CommunityChannelHistoryMessageListRequest | 
-    try {
-      MessageHistoryResponse result = apiInstance.listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling CommunityChannelManagementApi#listCommunityChannelHistoryMessages");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **communityChannelHistoryMessageListRequest** | [**CommunityChannelHistoryMessageListRequest**](CommunityChannelHistoryMessageListRequest.md)|  | |
-
-### Return type
-
-[**MessageHistoryResponse**](MessageHistoryResponse.md)
 
 ### Authorization
 

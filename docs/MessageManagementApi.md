@@ -10,7 +10,11 @@ All requests use the primary/backup domains configured by the caller.
 | [**deleteCommunityChannelMessageMetadata**](MessageManagementApi.md#deleteCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/delete | Delete community-channel message metadata keys |
 | [**deleteMessage**](MessageManagementApi.md#deleteMessage) | **POST** /v4/message/delete | Delete a message (recall) |
 | [**listChannelTypeMessageMetadata**](MessageManagementApi.md#listChannelTypeMessageMetadata) | **POST** /v4/channel-type/message/metadata/list | Get message metadata |
+| [**listCommunityChannelHistoryMessages**](MessageManagementApi.md#listCommunityChannelHistoryMessages) | **POST** /v4/community-channel/history-message/list | List community-channel history messages |
 | [**listCommunityChannelMessageMetadata**](MessageManagementApi.md#listCommunityChannelMessageMetadata) | **POST** /v4/community-channel/message/metadata/list | List community-channel message metadata |
+| [**listDirectChannelHistoryMessages**](MessageManagementApi.md#listDirectChannelHistoryMessages) | **POST** /v4/direct-channel/history-message/list | List direct-channel history messages |
+| [**listGroupChannelHistoryMessages**](MessageManagementApi.md#listGroupChannelHistoryMessages) | **POST** /v4/group-channel/history-message/list | List group-channel history messages |
+| [**listOpenChannelHistoryMessages**](MessageManagementApi.md#listOpenChannelHistoryMessages) | **POST** /v4/open-channel/history-message/list | List open-channel history messages |
 | [**sendCommunityChannelMessage**](MessageManagementApi.md#sendCommunityChannelMessage) | **POST** /v4/community-channel/message/send | Send a community channel message |
 | [**sendDirectChannelMessage**](MessageManagementApi.md#sendDirectChannelMessage) | **POST** /v4/direct-channel/message/send | Send a direct message |
 | [**sendDirectChannelStreamMessage**](MessageManagementApi.md#sendDirectChannelStreamMessage) | **POST** /v4/direct-channel/message/stream/send | Send a direct channel stream message |
@@ -436,6 +440,75 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
+<a id="listCommunityChannelHistoryMessages"></a>
+# **listCommunityChannelHistoryMessages**
+> MessageHistoryResponse listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest)
+
+List community-channel history messages
+
+Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest = new CommunityChannelHistoryMessageListRequest(); // CommunityChannelHistoryMessageListRequest | 
+    try {
+      MessageHistoryResponse result = apiInstance.listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#listCommunityChannelHistoryMessages");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **communityChannelHistoryMessageListRequest** | [**CommunityChannelHistoryMessageListRequest**](CommunityChannelHistoryMessageListRequest.md)|  | |
+
+### Return type
+
+[**MessageHistoryResponse**](MessageHistoryResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
 <a id="listCommunityChannelMessageMetadata"></a>
 # **listCommunityChannelMessageMetadata**
 > CommunityChannelMessageMetadataListResponse listCommunityChannelMessageMetadata(communityChannelMessageMetadataListRequest)
@@ -488,6 +561,213 @@ public class Example {
 ### Return type
 
 [**CommunityChannelMessageMetadataListResponse**](CommunityChannelMessageMetadataListResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a id="listDirectChannelHistoryMessages"></a>
+# **listDirectChannelHistoryMessages**
+> DirectGroupHistoryMessageResponse listDirectChannelHistoryMessages(directChannelHistoryMessageListRequest)
+
+List direct-channel history messages
+
+Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest = new DirectChannelHistoryMessageListRequest(); // DirectChannelHistoryMessageListRequest | 
+    try {
+      DirectGroupHistoryMessageResponse result = apiInstance.listDirectChannelHistoryMessages(directChannelHistoryMessageListRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#listDirectChannelHistoryMessages");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **directChannelHistoryMessageListRequest** | [**DirectChannelHistoryMessageListRequest**](DirectChannelHistoryMessageListRequest.md)|  | |
+
+### Return type
+
+[**DirectGroupHistoryMessageResponse**](DirectGroupHistoryMessageResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a id="listGroupChannelHistoryMessages"></a>
+# **listGroupChannelHistoryMessages**
+> DirectGroupHistoryMessageResponse listGroupChannelHistoryMessages(groupChannelHistoryMessageListRequest)
+
+List group-channel history messages
+
+Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest = new GroupChannelHistoryMessageListRequest(); // GroupChannelHistoryMessageListRequest | 
+    try {
+      DirectGroupHistoryMessageResponse result = apiInstance.listGroupChannelHistoryMessages(groupChannelHistoryMessageListRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#listGroupChannelHistoryMessages");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **groupChannelHistoryMessageListRequest** | [**GroupChannelHistoryMessageListRequest**](GroupChannelHistoryMessageListRequest.md)|  | |
+
+### Return type
+
+[**DirectGroupHistoryMessageResponse**](DirectGroupHistoryMessageResponse.md)
+
+### Authorization
+
+[NexconnSignature](../README.md#NexconnSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a id="listOpenChannelHistoryMessages"></a>
+# **listOpenChannelHistoryMessages**
+> OpenChannelHistoryMessageResponse listOpenChannelHistoryMessages(openChannelHistoryMessageListRequest)
+
+List open-channel history messages
+
+Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+
+### Example
+```java
+// Import classes:
+import ai.nexconn.ApiClient;
+import ai.nexconn.ApiException;
+import ai.nexconn.Configuration;
+import ai.nexconn.model.*;
+import ai.nexconn.api.MessageManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sg-light-api.com");
+    
+    // Configure API key authorization: NexconnSignature
+    ApiKeyAuth NexconnSignature = (ApiKeyAuth) defaultClient.getAuthentication("NexconnSignature");
+    NexconnSignature.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //NexconnSignature.setApiKeyPrefix("Token");
+
+    MessageManagementApi apiInstance = new MessageManagementApi(defaultClient);
+    
+    OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest = new OpenChannelHistoryMessageListRequest(); // OpenChannelHistoryMessageListRequest | 
+    try {
+      OpenChannelHistoryMessageResponse result = apiInstance.listOpenChannelHistoryMessages(openChannelHistoryMessageListRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MessageManagementApi#listOpenChannelHistoryMessages");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **openChannelHistoryMessageListRequest** | [**OpenChannelHistoryMessageListRequest**](OpenChannelHistoryMessageListRequest.md)|  | |
+
+### Return type
+
+[**OpenChannelHistoryMessageResponse**](OpenChannelHistoryMessageResponse.md)
 
 ### Authorization
 

@@ -19,21 +19,28 @@ import ai.nexconn.model.ChannelTypeMessageMetadataDeleteRequest;
 import ai.nexconn.model.ChannelTypeMessageMetadataListRequest;
 import ai.nexconn.model.ChannelTypeMessageMetadataListResponse;
 import ai.nexconn.model.CodeOnlyResponse;
+import ai.nexconn.model.CommunityChannelHistoryMessageListRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataDeleteRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataListRequest;
 import ai.nexconn.model.CommunityChannelMessageMetadataListResponse;
 import ai.nexconn.model.CommunityChannelMessageMetadataSetRequest;
 import ai.nexconn.model.CommunityChannelMessageSendRequest;
 import ai.nexconn.model.CommunityChannelMessageUpdateRequest;
+import ai.nexconn.model.DirectChannelHistoryMessageListRequest;
 import ai.nexconn.model.DirectChannelMessageSendRequest;
 import ai.nexconn.model.DirectChannelMessageUpdateRequest;
 import ai.nexconn.model.DirectChannelStreamMessageSendRequest;
+import ai.nexconn.model.DirectGroupHistoryMessageResponse;
+import ai.nexconn.model.GroupChannelHistoryMessageListRequest;
 import ai.nexconn.model.GroupChannelMessageSendRequest;
 import ai.nexconn.model.GroupChannelMessageUpdateRequest;
 import ai.nexconn.model.GroupChannelStreamMessageSendRequest;
 import ai.nexconn.model.MessageDeleteRequest;
+import ai.nexconn.model.MessageHistoryResponse;
 import ai.nexconn.model.MessageMetadataSetRequest;
 import ai.nexconn.model.OpenChannelBroadcastRequest;
+import ai.nexconn.model.OpenChannelHistoryMessageListRequest;
+import ai.nexconn.model.OpenChannelHistoryMessageResponse;
 import ai.nexconn.model.OpenChannelMessageSendRequest;
 import ai.nexconn.model.StreamMessageSendResponse;
 import ai.nexconn.model.UserMessageSendResponse;
@@ -136,6 +143,20 @@ public class MessageManagementApiTest {
     }
 
     /**
+     * List community-channel history messages
+     *
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listCommunityChannelHistoryMessagesTest() throws ApiException {
+        CommunityChannelHistoryMessageListRequest communityChannelHistoryMessageListRequest = null;
+        MessageHistoryResponse response = api.listCommunityChannelHistoryMessages(communityChannelHistoryMessageListRequest);
+        // TODO: test validations
+    }
+
+    /**
      * List community-channel message metadata
      *
      * @throws ApiException if the Api call fails
@@ -144,6 +165,48 @@ public class MessageManagementApiTest {
     public void listCommunityChannelMessageMetadataTest() throws ApiException {
         CommunityChannelMessageMetadataListRequest communityChannelMessageMetadataListRequest = null;
         CommunityChannelMessageMetadataListResponse response = api.listCommunityChannelMessageMetadata(communityChannelMessageMetadataListRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * List direct-channel history messages
+     *
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listDirectChannelHistoryMessagesTest() throws ApiException {
+        DirectChannelHistoryMessageListRequest directChannelHistoryMessageListRequest = null;
+        DirectGroupHistoryMessageResponse response = api.listDirectChannelHistoryMessages(directChannelHistoryMessageListRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * List group-channel history messages
+     *
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listGroupChannelHistoryMessagesTest() throws ApiException {
+        GroupChannelHistoryMessageListRequest groupChannelHistoryMessageListRequest = null;
+        DirectGroupHistoryMessageResponse response = api.listGroupChannelHistoryMessages(groupChannelHistoryMessageListRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * List open-channel history messages
+     *
+     * Rate limit: 10/sec. Query range is at most 14 days; messages are returned in descending timestamp order.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listOpenChannelHistoryMessagesTest() throws ApiException {
+        OpenChannelHistoryMessageListRequest openChannelHistoryMessageListRequest = null;
+        OpenChannelHistoryMessageResponse response = api.listOpenChannelHistoryMessages(openChannelHistoryMessageListRequest);
         // TODO: test validations
     }
 

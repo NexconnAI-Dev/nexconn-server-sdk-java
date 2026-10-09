@@ -193,9 +193,13 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.CommunityUserSubchannelListRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.CommunityUserSubchannelListResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.CommunityUserSubchannelListResponseResult.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectChannelHistoryMessageListRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectChannelMessageSendRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectChannelMessageUpdateRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectChannelStreamMessageSendRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectGroupHistoryMessageRecord.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectGroupHistoryMessageResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.DirectGroupHistoryMessageResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.FriendAddRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.FriendCleanRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.FriendDeleteRequest.CustomTypeAdapterFactory());
@@ -230,6 +234,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelFreezeListGetResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelFreezeListUpdateRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelFreezeStatusItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelHistoryMessageListRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelJoinRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelJoinResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.GroupChannelJoinedItem.CustomTypeAdapterFactory());
@@ -297,6 +302,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelGetResponseResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelGlobalMuteListAddRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelGlobalMuteListRemoveRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelHistoryMessageListRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelHistoryMessageRecord.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelHistoryMessageResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelHistoryMessageResult.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelLowPriorityMessageTypeListRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelMessageSendRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.nexconn.model.OpenChannelMessageTypeListResponse.CustomTypeAdapterFactory());

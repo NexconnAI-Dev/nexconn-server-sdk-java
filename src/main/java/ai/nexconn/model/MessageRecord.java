@@ -82,11 +82,6 @@ public class MessageRecord {
   @javax.annotation.Nullable
   private String messageType;
 
-  public static final String SERIALIZED_NAME_CHANNEL_TYPE = "channelType";
-  @SerializedName(SERIALIZED_NAME_CHANNEL_TYPE)
-  @javax.annotation.Nullable
-  private Integer channelType;
-
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
   @javax.annotation.Nullable
@@ -101,6 +96,11 @@ public class MessageRecord {
   @SerializedName(SERIALIZED_NAME_METADATA)
   @javax.annotation.Nullable
   private List<MessageMetadataListItem> metadata = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_QUOTE = "quote";
+  @SerializedName(SERIALIZED_NAME_QUOTE)
+  @javax.annotation.Nullable
+  private String quote;
 
   public MessageRecord() {
   }
@@ -219,25 +219,6 @@ public class MessageRecord {
   }
 
 
-  public MessageRecord channelType(@javax.annotation.Nullable Integer channelType) {
-    this.channelType = channelType;
-    return this;
-  }
-
-  /**
-   * Channel type of the stored message.
-   * @return channelType
-   */
-  @javax.annotation.Nullable
-  public Integer getChannelType() {
-    return channelType;
-  }
-
-  public void setChannelType(@javax.annotation.Nullable Integer channelType) {
-    this.channelType = channelType;
-  }
-
-
   public MessageRecord content(@javax.annotation.Nullable String content) {
     this.content = content;
     return this;
@@ -290,7 +271,7 @@ public class MessageRecord {
   }
 
   /**
-   * List of metadata entries (&#x60;CommunityHistoryMessage&#x60; uses &#x60;List&lt;MetadataItem&gt;&#x60;, not a map).
+   * Structured message metadata entries. Omitted when the original metadata is empty or cannot be parsed.
    * @return metadata
    */
   @javax.annotation.Nullable
@@ -302,6 +283,69 @@ public class MessageRecord {
     this.metadata = metadata;
   }
 
+
+  public MessageRecord quote(@javax.annotation.Nullable String quote) {
+    this.quote = quote;
+    return this;
+  }
+
+  /**
+   * Quoted message details as a JSON string containing msgUID, objectName and fromUserId. Omitted for messages without a quote.
+   * @return quote
+   */
+  @javax.annotation.Nullable
+  public String getQuote() {
+    return quote;
+  }
+
+  public void setQuote(@javax.annotation.Nullable String quote) {
+    this.quote = quote;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the MessageRecord instance itself
+   */
+  public MessageRecord putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -319,15 +363,16 @@ public class MessageRecord {
         Objects.equals(this.messageId, messageRecord.messageId) &&
         Objects.equals(this.sentAt, messageRecord.sentAt) &&
         Objects.equals(this.messageType, messageRecord.messageType) &&
-        Objects.equals(this.channelType, messageRecord.channelType) &&
         Objects.equals(this.content, messageRecord.content) &&
         Objects.equals(this.hasMetadata, messageRecord.hasMetadata) &&
-        Objects.equals(this.metadata, messageRecord.metadata);
+        Objects.equals(this.metadata, messageRecord.metadata) &&
+        Objects.equals(this.quote, messageRecord.quote)&&
+        Objects.equals(this.additionalProperties, messageRecord.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channelId, subchannelId, fromUserId, messageId, sentAt, messageType, channelType, content, hasMetadata, metadata);
+    return Objects.hash(channelId, subchannelId, fromUserId, messageId, sentAt, messageType, content, hasMetadata, metadata, quote, additionalProperties);
   }
 
   @Override
@@ -340,10 +385,11 @@ public class MessageRecord {
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    messageType: ").append(toIndentedString(messageType)).append("\n");
-    sb.append("    channelType: ").append(toIndentedString(channelType)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    hasMetadata: ").append(toIndentedString(hasMetadata)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -365,7 +411,7 @@ public class MessageRecord {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("channelId", "subchannelId", "fromUserId", "messageId", "sentAt", "messageType", "channelType", "content", "hasMetadata", "metadata"));
+    openapiFields = new HashSet<String>(Arrays.asList("channelId", "subchannelId", "fromUserId", "messageId", "sentAt", "messageType", "content", "hasMetadata", "metadata", "quote"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -381,14 +427,6 @@ public class MessageRecord {
       if (jsonElement == null) {
         if (!MessageRecord.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MessageRecord is not found in the empty JSON string", MessageRecord.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MessageRecord.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MessageRecord` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -424,6 +462,9 @@ public class MessageRecord {
           };
         }
       }
+      if ((jsonObj.get("quote") != null && !jsonObj.get("quote").isJsonNull()) && !jsonObj.get("quote").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `quote` to be a primitive type in the JSON string but got `%s`", jsonObj.get("quote").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -441,6 +482,28 @@ public class MessageRecord {
            @Override
            public void write(JsonWriter out, MessageRecord value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -448,7 +511,28 @@ public class MessageRecord {
            public MessageRecord read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             MessageRecord instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
